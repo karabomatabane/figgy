@@ -41,10 +41,12 @@ class _HomePageState extends State<HomePage>
         ),
         bottom: TabBar(
           controller: _tabController,
-          // bottom border indicator
-          indicator: const UnderlineTabIndicator(
-            borderSide: BorderSide(width: 2.0, color: Colors.black),
+          dividerColor: Colors.transparent,
+          indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(
+                width: 2.0, color: Theme.of(context).colorScheme.onSecondary),
           ),
+          labelColor: Theme.of(context).colorScheme.tertiary,
           indicatorSize: TabBarIndicatorSize.tab,
           onTap: (index) {
             if (_searchController.text.isNotEmpty) {
@@ -77,14 +79,13 @@ class _HomePageState extends State<HomePage>
             TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search for gifs',
+                hintText: 'Search for GIFs',
                 prefixIcon: const Icon(Icons.search),
                 hintStyle: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
                 ),
                 filled: true,
-                fillColor: Colors.grey[200],
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
                 border: OutlineInputBorder(
@@ -93,7 +94,9 @@ class _HomePageState extends State<HomePage>
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: const BorderSide(color: Colors.black, width: 2.0),
+                  borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.secondary,
+                      width: 2.0),
                 ),
               ),
               onSubmitted: (value) {

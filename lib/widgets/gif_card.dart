@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:figgy/widgets/skeleton_placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../models/gif.model.dart';
@@ -23,17 +25,15 @@ class _GifCardState extends State<GifCard> {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
+      clipBehavior: Clip.antiAlias,
       child: Stack(
         children: <Widget>[
           CachedNetworkImage(
             imageUrl: widget.gif.url,
             fit: BoxFit.cover,
-            placeholder: (context, url) => Center(
-              child: Container(
-                color: Colors.grey[300],
-                height: widget.gif.height,
-                width: widget.gif.width,
-              ),
+            placeholder: (context, url) => SkeletonPlaceholder(
+              height: widget.gif.height,
+              width: widget.gif.width,
             ),
             errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
@@ -82,8 +82,7 @@ class _GifCardState extends State<GifCard> {
                         timeInSecForIosWeb: 1,
                         backgroundColor: Theme.of(context).secondaryHeaderColor,
                         textColor: Colors.black,
-                        fontSize: 16.0
-                    );
+                        fontSize: 16.0);
                   },
                   child: Column(
                     children: <Widget>[
